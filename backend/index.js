@@ -1,15 +1,9 @@
 import express from 'express';
-import { Session } from './db.js';
+import rootRouter from './routes/index.js';
 const app = express();
 app.use(express.json());
 
-app.get('/', (req, res) => {
-    const s = Session.create({
-        status: 'active'
-    })
-    
-  res.send('Hello, World!');
-});
+app.use('/api/v1', rootRouter);
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {

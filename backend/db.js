@@ -17,7 +17,7 @@ const SessionSchema = new mongoose.Schema({
     status:{ type: String, enum: ['active', 'inactive','escalated'], default: 'active'  }
 });
 
-const MessageSchema =   new  mongoose.Schema({
+const MessageSchema = new mongoose.Schema({
     sessionId:{type: mongoose.Schema.Types.ObjectId, ref: 'Session', required: true  },
     sender:{ type: String, enum: ['user', 'bot'], required: true  },
     content:{ type: String, required: true  },
@@ -31,8 +31,26 @@ const EscalationSchema = new mongoose.Schema({
     timestamp:{ type: Date, default: Date.now  }
 });
 
+const FAQSchema = new mongoose.Schema({
+  question: { type: String, required: true },
+  answer: { type: String, required: true },
+  embedding: { type: [Number], required: true }, // vector
+  createdAt: { type: Date, default: Date.now }
+});
+
+const QueryStatSchema = new mongoose.Schema({
+  query: { type: String, required: true },
+  embedding: { type: [Number], required: true },
+  count: { type: Number, default: 1 },
+  promoted: { type: Boolean, default: false },
+  createdAt: { type: Date, default: Date.now },
+  lastSeenAt: { type: Date, default: Date.now }
+});
+
+const FAQ = mongoose.model("FAQ", FAQSchema);
+const QueryStat = mongoose.model("QueryStat", QueryStatSchema);
 const Session = mongoose.model('Session', SessionSchema);
 const Message = mongoose.model('Message', MessageSchema);
 const Escalation = mongoose.model('Escalation', EscalationSchema);
 
-export { Session, Message, Escalation };
+export { Session, Message, Escalation, QueryStat, FAQ };
