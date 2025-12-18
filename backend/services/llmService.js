@@ -13,17 +13,17 @@ const buildPrompt = (query, history) => {
   context += `User: ${query}\nAssistant:`;
 
   return `
-You are an AI customer support assistant.
+        You are an AI customer support assistant.
 
-If the query cannot be answered confidently or requires human assistance,
-reply ONLY with:
-ESCALATE
+        If the query cannot be answered confidently or requires human assistance,
+        reply ONLY with:
+        ESCALATE
 
-Otherwise, answer clearly and concisely.
+        Otherwise, answer clearly and concisely.
 
-Conversation:
-${context}
-`;
+        Conversation:
+        ${context}
+        `;
 };
 
 const getResponse = async (query, history) => {
