@@ -104,7 +104,7 @@ export function ChatInterface({ sessionId, setSessionId }) {
     }).catch((err) => {
       console.error("Error ending session:", err);
     });
-    
+
     localStorage.removeItem("sessionId");
     setSessionId(null);
   }
@@ -159,9 +159,20 @@ export function ChatInterface({ sessionId, setSessionId }) {
           ))}
 
           {isLoading && (
-            <Card className="px-4 py-3 bg-card">
-              <p className="text-sm text-muted-foreground">Typing...</p>
-            </Card>
+            <div className="flex gap-3 items-start">
+                <Avatar className="w-8 h-8 ">
+                  <AvatarFallback >
+                    <Bot className="w-4 h-4" color="#1E4AB7"/>
+                  </AvatarFallback>
+                </Avatar>
+                <Card className="px-4 py-3 bg-card shadow-sm">
+                  <div className="flex gap-1">
+                    <span className="w-2 h-2 bg-muted-foreground/60 rounded-full animate-bounce [animation-delay:-0.3s]" />
+                    <span className="w-2 h-2 bg-muted-foreground/60 rounded-full animate-bounce [animation-delay:-0.15s]" />
+                    <span className="w-2 h-2 bg-muted-foreground/60 rounded-full animate-bounce" />
+                  </div>
+                </Card>
+              </div>
           )}
 
           <div ref={messagesEndRef} />
