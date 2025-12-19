@@ -17,4 +17,25 @@ router.post('/create-session', async (req, res) => {
     }
 });
 
+router.put('/end-session', async (req, res) => {
+    const { sessionId } = req.body;
+    
+    if(!sessionId){
+        return res.status(400).json({ error: 'sessionId is required' });
+    }
+
+    try {
+        const updatedSession = await sessionService.updateSessionStatus(sessionId, 'inactive');
+        res.json({
+            message: 'Session ended successfully',
+            session: updatedSession
+        });
+    } catch (err){
+        console.error('Error ending session:', err);
+        res.status(500).json({ 
+            error:"Failed to end session"
+        });
+    }
+});
+
 export default router;

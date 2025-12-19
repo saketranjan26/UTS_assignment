@@ -95,6 +95,16 @@ export function ChatInterface({ sessionId, setSessionId }) {
   };
 
   const handleNewSession = () => {
+    const sessionId = localStorage.getItem("sessionId");
+
+    const response = fetch("http://localhost:3000/api/v1/session/end-session", {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ sessionId }),
+    }).catch((err) => {
+      console.error("Error ending session:", err);
+    });
+    
     localStorage.removeItem("sessionId");
     setSessionId(null);
   }
