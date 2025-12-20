@@ -1,4 +1,5 @@
 # 🤖 AI Customer Support Web-App
+[![Video Thumbnail Alt Text](https://img.youtube.com/vi/GpQtty0k59s/0.jpg)]([www.youtube.com](https://youtu.be/GpQtty0k59s))
 
 
 ## 📚 Index
